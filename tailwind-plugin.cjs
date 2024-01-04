@@ -313,25 +313,11 @@ module.exports = plugin(
       ".content-visible": {
         "content-visibility": "visible",
       },
-      ".text-balance": {
-        "text-wrap": "balance",
-      },
     })
     addVariant("hocus", ["&:hover", "&:focus"])
     addVariant("optional", "&:optional")
     addVariant("group-optional", ":merge(.group):optional &")
     addVariant("peer-optional", ":merge(.peer):optional ~ &")
-    matchVariant(
-      "has",
-      (value) => {
-        return `&:has(${value})`
-      },
-      {
-        values: {
-          checked: "input:checked",
-        },
-      }
-    )
   },
   {
     theme: {},
