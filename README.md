@@ -41,7 +41,7 @@ export function middleware(req: NextRequest) {
     // const validUser = process.env.BASIC_AUTH_USER;
     // const validPassWord = process.env.BASIC_AUTH_PASSWORD;
 
-    if (user === '4dmin' && pwd === 'testpwd123') {
+    if (user === 'admin' && pwd === 'admin1234') {
       return NextResponse.next()
     }
   }
@@ -51,14 +51,15 @@ export function middleware(req: NextRequest) {
 }
 ```
 
-- Create auth.ts in app/api/auth/route.ts
+- Create auth in app/api/auth/route.ts
 
 ```js
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-export default function handler(_: NextApiRequest, res: NextApiResponse) {
-  res.setHeader('WWW-authenticate', 'Basic realm="Secure Area"')
-  res.statusCode = 401
-  res.end(`Auth Required.`)
+export async function GET(request: Request) {
+  return new Response("Authentication Required!", {
+    status: 401,
+    headers: {
+      "WWW-Authenticate": "Basic realm='private_pages'",
+    },
+  })
 }
 ```
